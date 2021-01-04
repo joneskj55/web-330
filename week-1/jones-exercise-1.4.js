@@ -3,9 +3,12 @@
 ; Title:  Exercise 1.4 - Duck Typing/ Interfaces
 ; Author: Kevin Jones
 ; Date:   4 January 2021
-; Description: Create a cell phone object
-; with various properties, instantiate a
-; new object and print out the results.
+; Description: Create various vehicle classes,
+; give them a prototype method, use a function
+; to call the method, create 3 vehicles,
+; push each vehicle through the method, which
+; adds them to an array; iterate over the
+; array, output the results.
 ;===========================================
 */
 
