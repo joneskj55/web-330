@@ -2,8 +2,7 @@
 ============================================
 ; Title:  Exercise 1.3 - Class Refresher
 ; Author: Kevin Jones
-; Date:   4 January 2021
-; Modified By: Kevin Jones
+; Date: 4 January 2021
 ; Description: Create a cell phone object
 ; with various properties, instantiate a
 ; new object and print out the results.
