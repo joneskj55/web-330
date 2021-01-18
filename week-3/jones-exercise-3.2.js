@@ -31,7 +31,7 @@ function Informix(properties) {
   this.server = properties.server || "localhost:8000";
 }
 
-// Define DatabaseFactory()
+// Define DatabaseFactory() {}
 function DatabaseFactory() {}
 
 DatabaseFactory.prototype.databaseClass = Oracle;
