@@ -46,16 +46,16 @@ DatabaseFactory.prototype.createDatabase = function (properties) {
 };
 
 // Create a new oracleFactory and call the createDatabase prototype function (supply your own default values)
-const oracleFactory = new DatabaseFactory();
-const oracle = oracleFactory.createDatabase({
+var oracleFactory = new DatabaseFactory();
+var oracle = oracleFactory.createDatabase({
   databaseType: "Oracle",
   username: "admin",
   password: "P@$$werd",
 });
 
 // Create a new informixFactory and call the createDatabase prototype function (supply your own default values)
-const informixFactory = new DatabaseFactory();
-const informix = informixFactory.createDatabase({
+var informixFactory = new DatabaseFactory();
+var informix = informixFactory.createDatabase({
   databaseType: "Informix",
   username: "admin1",
   password: "P@$$werd1",
