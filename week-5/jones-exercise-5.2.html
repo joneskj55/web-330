@@ -21,28 +21,31 @@
     <br /><span id="proxyPattern" style="font-weight: bold"></span>
     <script>
       // Recreate proxy example one (1) using your own object fields and display function.
-      var player = {
-        name: "KD",
-        position: "All",
-        team: "Nets",
-        height: "7 ft.",
-        display: function () {
-          $("#proxyPattern").append(
-            "<br/>Name: " +
-              this.name +
-              "<br/>" +
-              "Position: " +
-              this.position +
-              "<br/>" +
-              "Team: " +
-              this.team +
-              "<br/>" +
-              "Height: " +
-              this.height
-          );
-        },
-      };
-      $("#btn").click($.proxy(player, "display"));
+      $(function () {
+        var player = {
+          name: "KD",
+          position: "All",
+          team: "Nets",
+          height: "7 ft.",
+          display: function () {
+            $("#proxyPattern").html("");
+            $("#proxyPattern").append(
+              "<br/>Name: " +
+                this.name +
+                "<br/>" +
+                "Position: " +
+                this.position +
+                "<br/>" +
+                "Team: " +
+                this.team +
+                "<br/>" +
+                "Height: " +
+                this.height
+            );
+          },
+        };
+        $("#btn").click($.proxy(player, "display"));
+      });
     </script>
   </body>
 </html>
