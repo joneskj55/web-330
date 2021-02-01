@@ -1,0 +1,49 @@
+<!--============================================
+; Title: Exercise 5.2 - The Proxy Pattern
+; Author: Professor Krasso
+; Date: 1 February 2021
+; Modified by: Kevin Jones
+; Description: Demonstrate the jQuery Proxy
+; Pattern.
+;===========================================-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Exercise 5.2 - The Proxy Pattern</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  </head>
+  <body>
+    <h2 style="color: darkblue">Proxy Example 1</h2>
+    <button id="btn" style="padding: 30px">Test</button>
+    <!-- The display function should append the field values to a span tag -->
+    <br /><span id="proxyPattern" style="font-weight: bold"></span>
+
+    <script>
+      // Recreate proxy example one (1) using your own object fields and display function.
+      var player = {
+        name: "KD",
+        position: "All",
+        team: "Nets",
+        height: "7 ft.",
+        display: function () {
+          $("#proxyPattern").append(
+            "<br/>Name: " +
+              this.name +
+              "<br/>" +
+              "Position: " +
+              this.position +
+              "<br/>" +
+              "Team: " +
+              this.team +
+              "<br/>" +
+              "Height: " +
+              this.height
+          );
+        },
+      };
+      $("#btn").click($.proxy(player, "display"));
+    </script>
+  </body>
+</html>
