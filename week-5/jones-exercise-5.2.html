@@ -15,9 +15,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   </head>
   <body>
+    <!-- h2 title with minimum CSS styling-->
     <h2 style="color: darkblue">Proxy Example 1</h2>
+    <!-- button tag with minimum CSS styling to trigger the display function event -->
     <button id="btn" style="padding: 30px">Test</button>
-    <!-- The display function should append the field values to a span tag -->
+    <!-- span tag with minimum CSS styling to output the results -->
     <br /><span id="proxyPattern" style="font-weight: bold"></span>
     <script>
       // Recreate proxy example one (1) using your own object fields and display function.
@@ -28,7 +30,9 @@
           team: "Nets",
           height: "7 ft.",
           display: function () {
+            // clear the span tag before appending the new values
             $("#proxyPattern").html("");
+            // display function should append the field values to a span tag
             $("#proxyPattern").append(
               "<br/>Name: " +
                 this.name +
