@@ -1,10 +1,10 @@
 <!--============================================
-; Title: Exercise 6.2 - ViewModel Function Objects
+; Title: Exercise 6.3 - ViewModel Object Literals
 ; Author: Professor Krasso
 ; Date: 8 February 2021
 ; Modified by: Kevin Jones
 ; Description: Demonstrate how to use Knockout.js
-; ViewModels and data bindings using Function Objects.
+; ViewModels and data bindings using Object Literals.
 ;===========================================-->
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Exercise 6.2</title>
+    <title>Exercise 6.3</title>
     <!-- Stylesheet - Bootstrap -->
     <link
       rel="stylesheet"
@@ -63,15 +63,15 @@
     </div>
 
     <script>
-      // Create PersonViewModel with three fields
-      function PersonViewModel() {
-        this.firstName = ko.observable("Kenny");
-        this.lastName = ko.observable("Smith");
-        this.email = ko.observable("ksmith@mail.ru");
-      }
+      // Create personViewModel with three fields
+      var personViewModel = {
+        firstName: "Kenny",
+        lastName: "Smith",
+        email: "ksmith@mail.ru",
+      };
 
       // Activate Knockout
-      ko.applyBindings(new PersonViewModel());
+      ko.applyBindings(personViewModel);
     </script>
   </body>
 </html>
