@@ -1,10 +1,10 @@
 <!--============================================
-; Title: Exercise 8.3 - UD Operations
+; Title: Assignment 8.4 - CRUD Operations
 ; Author: Professor Krasso
 ; Date: 22 February 2021
 ; Modified by: Kevin Jones
-; Description: Demonstrate how to perform update &
-; delete operations using Knockout.js
+; Description: Demonstrate how to perform CRUD
+; operations using Knockout.js
 ;===========================================-->
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <title>Exercise 8.3 - UD Operations</title>
+    <title>Exercise 8.4 - CRUD Operations</title>
 
     <!-- Stylesheet - Bootstrap -->
     <link
@@ -34,47 +34,75 @@
 
     <!-- JavaScript Libraries -->
     <script src="../knockout-3.5.1.js"></script>
-
-    <style>
-      a {
-        color: white;
-        text-decoration: none;
-      }
-
-      a:hover {
-        color: white;
-        text-decoration: underline;
-      }
-    </style>
   </head>
   <body>
     <div role="main" class="container">
       <br /><br />
-
-      <div class="row" data-bind="if: error">
+      <h2>CRUD</h2>
+      <br />
+      <div class="row" data-bind="if:error">
         <div class="col-sm-12">
           <div class="alert alert-danger" role="alert">
             <strong>Warning!</strong> <span data-bind="text: error()"></span>
           </div>
         </div>
       </div>
-
-      <br />
-
-      <h2>UD Example</h2>
       <div class="row">
         <div class="col-sm-8">
           <div
             class="card card-inverse"
-            style="background-color: #333; border-color: #333; color: white"
+            style="
+              background-color: #333333;
+              border-color: #333333;
+              color: white;
+            "
           >
             <div class="card-block p-3">
               <h3 class="card-title">Employee List</h3>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div
+                    class="card card-inverse"
+                    style="
+                      background-color: #333333;
+                      border-color: #333333;
+                      color: white;
+                    "
+                  >
+                    <div class="card-block p-3">
+                      <div class="card-text">
+                        <div class="form-group row">
+                          <label for="txtName" class="col-3 col-form-label"
+                            >Name:</label
+                          >
+                          <div class="col-5">
+                            <!-- Add employee -->
+                            <input
+                              type="text"
+                              data-bind="value: nameToAdd, valueupdate: 'afterkeydown'"
+                              class="form-control"
+                              id="txtName"
+                            />
+                          </div>
+                          <div class="col-4">
+                            <a
+                              href="#"
+                              data-bind="click: $root.add"
+                              class="btn btn-primary"
+                              >Add</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="card-text">
                 <table class="table table-dark table-striped table-hover">
                   <thead>
                     <tr>
-                      <th>EmployeeId</th>
+                      <th>EmployeeID</th>
                       <th>Name</th>
                       <th>Functions</th>
                     </tr>
@@ -90,7 +118,7 @@
                             class="btn btn-success"
                             data-bind="click: $root.edit"
                           >
-                            <i class="fa fa-pencil fa-lg"> </i> EDIT
+                            <i class="fa fa-pencil fa-lg"></i>EDIT
                           </a>
                         </span>
                         |
@@ -100,7 +128,7 @@
                             class="btn btn-danger"
                             data-bind="click: $root.remove"
                           >
-                            <i class="fa fa-trash-o fa-lg"> </i> DELETE
+                            <i class="fa fa-trash-o fa-lg"></i> DELETE
                           </a>
                         </span>
                       </td>
@@ -111,17 +139,20 @@
             </div>
           </div>
         </div>
-
         <div class="col-sm-4" data-bind="if: Employee">
           <div
             class="card card-inverse"
-            style="background-color: #333; border-color: #333; color: white"
+            style="
+              background-color: #333333;
+              border-color: #333333;
+              color: white;
+            "
           >
             <div class="card-block p-3">
               <h3 class="card-title">Employee</h3>
               <div class="card-text">
                 <div class="form-group">
-                  <label for="txtName">Name: </label>
+                  <label for="txtName">Name:</label>
                   <input
                     type="text"
                     id="txtName"
@@ -129,10 +160,9 @@
                     class="form-control"
                   />
                 </div>
-
                 <div class="form-group float-right">
                   <button
-                    data-bind="click: $root.cancel"
+                    data-bind="click:$root.cancel"
                     class="btn btn-group btn-danger"
                   >
                     Cancel
@@ -154,24 +184,25 @@
 
     <script>
       // Employee JavaScript object
-      function Employee(id, name) {
+      function employee(id, name) {
         this.Id = id; // Create Id field
         this.Name = name; // Create Name field
       }
 
       // Array of employees
       var employeeList = [
-        new Employee(1, "Jim"),
-        new Employee(2, "Pam"),
-        new Employee(3, "Stanley"),
-        new Employee(4, "Oscar"),
-        new Employee(5, "Dwight"),
+        new employee(1, "Jim"),
+        new employee(2, "Pam"),
+        new employee(3, "Stanley"),
+        new employee(4, "Oscar"),
+        new employee(5, "Dwight"),
       ];
 
       // Create EmployeeViewModel
-      function EmployeeViewModel() {
+      function PayrollViewModel() {
         var self = this;
 
+        self.nameToAdd = ko.observable(""); // nameToAdd observable
         self.error = ko.observable(""); // error observable
         self.Id = ko.observable(""); // Id observable
         self.Name = ko.observable(""); // Name observable
@@ -182,11 +213,27 @@
           Name: self.Name,
         };
 
-        // Employee observable
-        self.Employee = ko.observable();
+        self.Employee = ko.observable(); // Employee observable
 
         // Employees observableArray (5 employee records, with default values
         self.Employees = ko.observableArray(employeeList);
+
+        // Create add function
+        self.add = function () {
+          // If the name being added is not blank & is not on the list already, add the name. If display error message.
+          if (
+            self.nameToAdd() !== "" &&
+            self.Employees.indexOf(self.nameToAdd()) < 0
+          ) {
+            self.error("");
+            // Increment EmployeeID number
+            let incrementID = self.Employees().length + 1;
+            self.Employees.push(new employee(incrementID, self.nameToAdd()));
+          } else {
+            self.error("Duplicate or Invalid Entry");
+          }
+          self.nameToAdd("");
+        };
 
         // Define edit function
         self.edit = function (Employee) {
@@ -211,8 +258,8 @@
         };
       }
 
-      // Apply Knockout
-      ko.applyBindings(new EmployeeViewModel());
+      // Initiate Knockout
+      ko.applyBindings(new PayrollViewModel());
     </script>
   </body>
 </html>
